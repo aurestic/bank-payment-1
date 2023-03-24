@@ -68,7 +68,7 @@ class TestAccountPaymentOrderReturn(common.SavepointCase):
                 "active_id": self.payment_order.id,
             }
         )
-        wizard = wizard_o.with_context(context).create(
+        wizard = wizard_o.with_context(**context).create(
             {
                 "order_id": self.payment_order.id,
                 "journal_ids": [
