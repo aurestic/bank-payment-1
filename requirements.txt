@@ -1,3 +1,4 @@
 # generated from manifests external_dependencies
-lxml
+lxml==3.7.1 ; sys_platform != 'win32' and python_version < '3.7'
+lxml==4.3.2 ; sys_platform != 'win32' and python_version >= '3.7'
 unidecode
