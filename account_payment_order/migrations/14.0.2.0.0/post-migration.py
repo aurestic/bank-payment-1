@@ -31,7 +31,7 @@ def _insert_account_payments(env):
         FROM bank_payment_line bpl
         JOIN account_payment_order apo ON apo.id = bpl.order_id
         JOIN account_payment_mode apm ON apm.id = apo.payment_mode_id
-        LEFT JOIN account_move_line aml ON aml.bank_payment_line_id = bpl.id
+        JOIN account_move_line aml ON aml.bank_payment_line_id = bpl.id
         WHERE apo.state not in ('uploaded', 'done') or aml.move_id is not null
         """,
     )
@@ -87,7 +87,7 @@ def create_moves_from_orphan_account_payments(env):
         JOIN account_payment ap ON ap.old_bank_payment_line_id = bpl.id
         JOIN account_payment_order apo ON apo.id = bpl.order_id
         JOIN account_payment_line apl ON apl.bank_line_id = bpl.id
-        LEFT JOIN account_move_line aml ON aml.bank_payment_line_id = bpl.id
+        JOIN account_move_line aml ON aml.bank_payment_line_id = bpl.id
         WHERE aml.move_id IS NULL
         GROUP BY ap.id
         """
